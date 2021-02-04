@@ -1,0 +1,58 @@
+matrix:
+  include:
+  - language: php
+    name: "Compatibility Test (PHP 7.3)"
+    php: 7.3
+    install:
+    - "./install.sh"
+    script:
+    - "./scan.sh"
+  - language: php
+    name: "Compatibility Test (PHP 7.4)"
+    php: 7.4
+    install:
+    - "./install.sh"
+    script:
+    - "./scan.sh"
+  - language: php
+    name: "Compatibility Test (PHP 8.0)"
+    php: 8.0
+    install:
+    - "./install.sh"
+    script:
+    - "./scan.sh"
+  - language: ruby
+    name: YAML Linting (rvm 2.7)
+    rvm: 2.7
+    before_install:
+    - git clone https://github.com/TravisToolbox/yaml-lint
+    install:
+    - "./yaml-lint/install.sh"
+    script:
+    - "./yaml-lint/scan.sh"
+  - language: bash
+    name: Shellcheck (Bash)
+    os: linux
+    arch: arm64-graviton2
+    before_install:
+    - git clone https://github.com/TravisToolbox/shellcheck
+    install:
+    - "./shellcheck/install.sh"
+    script:
+    - "./shellcheck/scan.sh"
+  - language: ruby
+    name: Link Checking (rvm 2.7)
+    rvm: 2.7
+    env:
+    - WHITELIST="https://img.shields.io"
+    - EXCLUDE_FILES="CHANGELOG.md"
+    before_install:
+    - git clone https://github.com/TravisToolbox/awesomebot
+    install:
+    - "./awesomebot/install.sh"
+    script:
+    - "./awesomebot/scan.sh"
+notifications:
+  email: false
+  slack:
+    secure: F7qD1MWixQpemDnP83GVkuMQJyu9ufDhNAUS+GCJRGCEG7T9nrM1j7L8csd0mRlJY3ujn5C9RApfv+dPl9LzEQEPrdToDUprWiPeM/9vC73V+iTkBMqFiPaez7fcGwbM8uw535+/VxO/4Y6nDLSMitMdiZN2rtWc39NMdbO6zvMSgFiMJ7FZNtToYfm2vYGoWFyWmwH7Y6hQIFLGH8v7eB6Y1dUYcukPvsWGbKoDsFKO+tN4dHT+Vydt/20xpI5Ozzt3zGD5ENgSNa1yRvVeLW1KMo/kVTICAogHRlCL3GRaR4WER7ukMoc5cC9yckZYOrm3PIMFt4C8vz2FszU9eg7SV7kyizn3luaCoBV4XkyzN94/gTj7e95fcAYstKsAAUc/vEIFdOFtxSSJOMcaAX4n08yWsb5jONwvaeXC+O0iy2k/+oGsi2vMPltelvRl11Tsl+8wFYjOZ0K2yW48BrMumxZ7fOm5ePM2HqDEQdQ1+zh7OUkJbY0rf4p5tQmEsGkoXDdHT7ddw3e+nm8VDDE5tupF+FHsccy9aNWHUE1J4Vrzc/EM3n3upx9LLx+Gi/tqGjqtJH0RAde4hHQnAvtGOGevng11RgQJw4MmsoH7kTb67LpLQBp/z3/IzrEEgKGbGtB+yK7lE5ZzuyoAXa4hUjn3ekYY7PUfu2AUjaA=
