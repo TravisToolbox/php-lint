@@ -31,7 +31,7 @@ BANNER="Scanning all php code with phplint"
 # -------------------------------------------------------------------------------- #
 success()
 {
-    printf ' [  \033[00;32mOK\033[0m  ] Linting successful for %s\n' "$1"
+    printf ' [  \033[00;32mOK\033[0m  ] Processing successful for %s\n' "$1"
 }
 
 # -------------------------------------------------------------------------------- #
@@ -42,7 +42,7 @@ success()
 # -------------------------------------------------------------------------------- #
 fail()
 {
-    printf ' [ \033[0;31mFAIL\033[0m ] Linting failed for %s\n' "$1"
+    printf ' [ \033[0;31mFAIL\033[0m ] Processing failed for %s\n' "$1"
     echo "$2"
     EXIT_VALUE=1
 }
@@ -70,8 +70,7 @@ check()
     local filename="$1"
     local errors
 
-    # shellcheck disable=SC2094,SC2086
-    if errors=$(${TEST_COMMAND} ${filename} < ${filename}); then
+    if errors=$( ${TEST_COMMAND} "${filename}" 2>&1 ); then
         success "${filename}"
     else
         fail "${filename}" "${errors}"
@@ -89,10 +88,9 @@ scan_files()
 
     while IFS= read -r filename
     do
-        # shellcheck disable=SC2053
         if file -b "${filename}" | grep -qE "${FILE_TYPE_SEARCH_PATTERN}"; then
             check "${filename}"
-        elif [[ ${filename} =~ ${FILE_NAME_SEARCH_PATTERN} ]]; then
+        elif [[ "${filename}" =~ ${FILE_NAME_SEARCH_PATTERN} ]]; then
             check "${filename}"
         fi
     done < <(git ls-files)
