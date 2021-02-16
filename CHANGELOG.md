@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file.
 
 This changelog was automatically generated using [Caretaker](https://github.com/DevelopersToolbox/caretaker) by [Wolf Software](https://github.com/WolfSoftware)
 
+### [v0.1.2](https://github.com/TravisToolbox/php-lint/compare/v0.1.1...v0.1.2)
+
+> Released on February, 16th 2021
+
+- Minor cleanup to the code to bring it in line with our coding standards [`[head]`](https://github.com/TravisToolbox/php-lint/commit/)
+
 ### [v0.1.1](https://github.com/TravisToolbox/php-lint/compare/v0.1.0...v0.1.1)
 
 > Released on February, 6th 2021
 
-- Bump version and release [`[head]`](https://github.com/TravisToolbox/php-lint/commit/)
+- Bump version and release [`[548c0c6]`](https://github.com/TravisToolbox/php-lint/commit/548c0c6aa2482ce9d8bd794c61a8b6ead670d406)
 
 - Update scanner to catch stderr and some other minor cleanup [`[0161dbd]`](https://github.com/TravisToolbox/php-lint/commit/0161dbd850171a6971d18a0fde452f794d8b8222)
 
